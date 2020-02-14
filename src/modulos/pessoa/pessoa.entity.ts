@@ -1,52 +1,52 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from "typeorm";
-import { PessoaSexoEnum } from "./pessoa.enum";
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { PessoaSexoEnum } from './pessoa.enum';
 import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({
-    name: 'pessoa'
+    name: 'pessoa',
 })
-export class Pessoa extends BaseEntity {   
+export class Pessoa extends BaseEntity {
     @ApiProperty()
     @PrimaryGeneratedColumn({
-        comment: 'Codigo chave do cadastro de cliente'
+        comment: 'Codigo chave do cadastro de cliente',
     })
     codigo: number;
 
     @ApiProperty()
     @Column({
-        comment: 'Nome da pessoa'
+        comment: 'Nome da pessoa',
     })
     nome: string;
 
     @ApiProperty()
     @Column({
-        comment: 'Sobrenome da pessoa'
+        comment: 'Sobrenome da pessoa',
     })
     sobrenome: string;
 
     @ApiProperty()
     @Column({
         comment: 'Apelido ou nome que gostaria de ser tratado',
-        nullable: true
+        nullable: true,
     })
     apelido: string;
 
     @ApiProperty()
     @Column({
         comment: 'Sexo da pessoa \n0-Não informado.\n1-Masculino.\n2-Feminino.',
-        default: 0
+        default: 0,
     })
     sexo: PessoaSexoEnum;
 
     @ApiProperty()
     @Column({
-        default: false
+        default: false,
     })
     bloqueado: boolean;
 
     @ApiProperty()
     @Column({
-        default: false
+        default: false,
     })
     isZelador: boolean;
 
