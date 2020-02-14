@@ -46,4 +46,4 @@ export const typeOrmConfig = (): TypeOrmModuleOptions => {
     }
 
     return config;
-}
+};
