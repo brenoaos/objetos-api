@@ -16,11 +16,11 @@ interface IBaseConfig {
 const baseConfig: IBaseConfig = {
     production: {
         type: 'postgres',
-        host: 'ec2-3-213-192-58.compute-1.amazonaws.com',
+        host: 'ec2-35-172-85-250.compute-1.amazonaws.com',
         port: 5432,
-        username: 'ifjedywbbiztsj',
-        password: '5a119d482bc8c03972cc0c5cc7c4167db76dd5ff3a136d686f149ca334a78fa3',
-        database: 'd2lmaskvu2c76n',
+        username: 'conylnfdwxsdnj',
+        password: 'e66286b16dab613ba4598b16b1bfa6f0e762e42ffd8673baf3eb62b7a3b31451',
+        database: 'd4uo6e64s5q72j',
         entities,
         ssl: true,
         synchronize: true,
@@ -34,8 +34,8 @@ const baseConfig: IBaseConfig = {
         database: 'objetos',
         entities,
         synchronize: true,
-    }
-}
+    },
+};
 
 export const typeOrmConfig = (): TypeOrmModuleOptions => {
     let config = baseConfig.developement;
