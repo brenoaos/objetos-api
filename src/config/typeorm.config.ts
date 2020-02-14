@@ -1,13 +1,13 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-// import { Pessoa } from '../modulos/pessoa/pessoa.entity';
-// import { CaixaEntity } from '../modulos/caixa/caixa.entity';
-// import { ObjetoEntity } from '../modulos/objeto/objeto.entity';
+import { Pessoa } from '../modulos/pessoa/pessoa.entity';
+import { CaixaEntity } from '../modulos/caixa/caixa.entity';
+import { ObjetoEntity } from '../modulos/objeto/objeto.entity';
 
-const entities = []
-//     Pessoa,
-//     CaixaEntity,
-//     ObjetoEntity,
-// ];
+const entities = [
+    Pessoa,
+    CaixaEntity,
+    ObjetoEntity,
+];
 
 interface IBaseConfig {
     [stage: string]: TypeOrmModuleOptions;
