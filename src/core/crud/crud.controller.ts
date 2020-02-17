@@ -24,7 +24,7 @@ export class CrudController<T> {
         return await this.service.count(filtro);
     }
 
-    @Post('create')
+    @Post()
     async create(@Body() objeto: Promise<T>) {
         return await this.service.inserir(objeto);
     }
