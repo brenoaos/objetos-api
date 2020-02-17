@@ -9,72 +9,72 @@ export class ObjetoEntity extends BaseEntity {
     codigo: number;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     nome: string;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     descricao: string;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     altura: number;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     largura: number;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     comprimento: number;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     peso: number;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     cor: string;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     material: number;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     tensão: number;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     donoCodigo: number;
 
     @Column({
-        comment: ''
+        comment: '',
     })
-    zeladorCodigo: Number;
+    zeladorCodigo: number;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     dataValidade: Date;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     chaveAcessoNotaFiscal: string;
 
     @Column({
-        comment: ''
+        comment: '',
     })
     observacao: string;
 }

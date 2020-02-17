@@ -1,4 +1,4 @@
-import { Get, Query, ParseIntPipe, Param, Post, Body, Delete, Patch } from '@nestjs/common';
+import { Get, Query, ParseIntPipe, Param, Post, Body, Delete, Patch, Req } from '@nestjs/common';
 import { FilterQuery } from 'typeorm';
 import { IObjetoQuery, IBaseRepository } from './crud.interface';
 

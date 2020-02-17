@@ -12,22 +12,22 @@ export class CaixaEntity extends BaseEntity{
         comment: 'Codigo Principal para caixa'
     })
     codigo: number;
-    
+
     @Column({
         comment: 'Tipo de caixa'
     })
     tipo: CaixaTipoEnum;
-    
+
     @Column({
         comment: 'Cor da caixa'
     })
     cor: CorEnum;
-    
+
     @Column({
         comment: 'Altura de caixa'
     })
     altura: number;
-    
+
     @Column({
         comment: 'Largura de caixa'
     })
