@@ -7,9 +7,13 @@ import { CrudService } from '../../core/crud/crud.service';
 @Injectable()
 export class PessoaService extends CrudService<Pessoa> {
     constructor(
-        @InjectRepository(PessoaRepository) pessoaRepository: PessoaRepository,
+        @InjectRepository(PessoaRepository) public pessoaRepository: PessoaRepository,
     ) {
         super(pessoaRepository);
+    }
+
+    async inserir(objeto): Promise<Pessoa> {
+        return await this.pessoaRepository.createPerson(objeto)
     }
 
   }

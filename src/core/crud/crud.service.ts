@@ -7,7 +7,7 @@ import { isObject } from "util";
 
 @Injectable()
 export class CrudService<T> {
-    public repository: any
+    public repository: Repository<T>
 
     constructor(rep) {
         this.repository = rep;
@@ -22,15 +22,15 @@ export class CrudService<T> {
         try {
             filter = JSON.parse(filter)
         }
-        catch(e){
+        catch (e) {
             filter = {};
         }
 
-        if (!filter.limit) filter.limit = 50;
+        // if (!filter.take) filter.take = 50;
 
         const registros = await this.repository.find(filter);
 
-        if (registros.length <= 0) throw new NotFoundException(`Nenhum registro foi encontrado.`)
+        // if (registros.length <= 0) throw new NotFoundException(`Nenhum registro foi encontrado.`)
 
         return {
             quantidadeTotal: await this.count({}).then((n) => n),
@@ -47,6 +47,31 @@ export class CrudService<T> {
 
         return registro;
 
+    }
+
+    async deletar(codigo) {
+        let obj = await this.procurarPorCodigo(codigo);
+
+        if (!obj) {
+            
+            throw new NotFoundException(`Nenhum objeto encontrado.`)
+            
+        }
+
+        let del = await this.repository.delete(obj)
+
+        if(del.affected === 0){
+
+            throw new NotFoundException(`Nenhum objeto encontrado.`)
+
+        }
+
+        return true
+    }
+
+    async atualizar(objeto) {
+        objeto.dataAlteracao = new Date();
+        this.repository.save(objeto);
     }
 
 }

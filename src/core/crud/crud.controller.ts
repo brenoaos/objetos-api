@@ -1,6 +1,6 @@
-import { Get, Query, ParseIntPipe, Param, Post, Body } from '@nestjs/common';
+import { Get, Query, ParseIntPipe, Param, Post, Body, Delete, Patch } from '@nestjs/common';
 import { FilterQuery } from 'typeorm';
-import { IObjetoQuery } from './crud.interface';
+import { IObjetoQuery, IBaseRepository } from './crud.interface';
 
 export class CrudController<T> {
     service;
@@ -10,7 +10,7 @@ export class CrudController<T> {
     }
 
     @Get()
-    async getall(@Query('filtro') filtro: IObjetoQuery<T> ): Promise<T[]> {
+    async getall(@Query('filtro') filtro: any): Promise<T[]> {
         return await this.service.procurar(filtro);
     }
 
@@ -20,7 +20,7 @@ export class CrudController<T> {
     }
 
     @Get('count')
-    async count(@Query('filtro') filtro: IObjetoQuery<T> ): Promise<T> {
+    async count(@Query('filtro') filtro: IObjetoQuery<T>): Promise<T> {
         return await this.service.count(filtro);
     }
 
@@ -29,4 +29,18 @@ export class CrudController<T> {
         return await this.service.inserir(objeto);
     }
 
+    @Delete()
+    async deletar(@Query('filtro') filtro: IObjetoQuery<T>): Promise<any> {
+        return await this.service.deletar(filtro);
+    }
+
+    @Delete(':codigo')
+    async deletarPorCodigo(@Param('codigo', ParseIntPipe) codigo: number): Promise<any> {
+        return await this.service.deletar(codigo);
+    }
+
+    @Patch()
+    async atualizar(@Body() objeto: Promise<T>): Promise<T> {
+        return await this.service.atualizar(objeto);
+    }
 }
