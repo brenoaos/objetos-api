@@ -1,13 +1,13 @@
-import { InjectRepository } from "@nestjs/typeorm";
-import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import { InjectRepository } from '@nestjs/typeorm';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { FilterQuery, Repository } from 'typeorm';
 import { Query } from 'typeorm/driver/Query';
-import { IObjetoQuery } from './crud.interface'
-import { isObject } from "util";
+import { IObjetoQuery } from './crud.interface';
+import { isObject } from 'util';
 
 @Injectable()
 export class CrudService<T> {
-    public repository: Repository<T>
+    public repository: Repository<T>;
 
     constructor(rep) {
         this.repository = rep;
@@ -20,9 +20,8 @@ export class CrudService<T> {
     async procurar(filter): Promise<any> {
 
         try {
-            filter = JSON.parse(filter)
-        }
-        catch (e) {
+            filter = JSON.parse(filter);
+        } catch (e) {
             filter = {};
         }
 
@@ -43,35 +42,38 @@ export class CrudService<T> {
 
         const registro = await this.repository.findOne(codigo);
 
-        if (!registro) throw new NotFoundException(`Nenhum registro com o codigo ${codigo} foi encontrado.`)
+        if (!registro) { throw new NotFoundException(`Nenhum registro com o codigo ${codigo} foi encontrado.`); }
 
         return registro;
 
     }
 
     async deletar(codigo) {
-        let obj = await this.procurarPorCodigo(codigo);
+        const obj = await this.procurarPorCodigo(codigo);
 
         if (!obj) {
-            
-            throw new NotFoundException(`Nenhum objeto encontrado.`)
-            
-        }
 
-        let del = await this.repository.delete(obj)
-
-        if(del.affected === 0){
-
-            throw new NotFoundException(`Nenhum objeto encontrado.`)
+            throw new NotFoundException(`Nenhum objeto encontrado.`);
 
         }
 
-        return true
+        const del = await this.repository.delete(obj);
+
+        if (del.affected === 0) {
+
+            throw new NotFoundException(`Nenhum objeto encontrado.`);
+
+        }
+
+        return true;
     }
 
-    async atualizar(objeto) {
+    async atualizar(objeto): Promise<T> {
+
         objeto.dataAlteracao = new Date();
-        this.repository.save(objeto);
+
+        return await this.repository.save(objeto);
+
     }
 
 }
