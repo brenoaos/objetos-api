@@ -5,7 +5,7 @@ import { CrudController } from '../../core/crud/crud.controller';
 import { ApiTags } from '@nestjs/swagger';
 // import { CreatePersonDTO } from './caixa.dto';
 
-@Controller('caixa')
+@Controller('caixas')
 @ApiTags('Caixa')
 export class CaixaController extends CrudController<CaixaEntity> {
     constructor(
