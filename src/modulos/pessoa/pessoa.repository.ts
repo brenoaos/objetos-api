@@ -1,9 +1,9 @@
-import { Repository, EntityRepository } from "typeorm";
-import { Pessoa } from "./pessoa.entity";
-// import { CreatePersonDTO } from "./pessoa.dto";
+import { Repository, EntityRepository } from 'typeorm';
+import { Pessoa } from './pessoa.entity';
+// import { CreatePersonDTO } from './pessoa.dto';
 
 @EntityRepository(Pessoa)
-export class PessoaRepository extends Repository<Pessoa>{
+export class PessoaRepository extends Repository<Pessoa> {
 
     async createPerson(createPersonDTO: any): Promise<Pessoa> {
         const { nome, sobrenome, apelido, isDono, isZelador } = createPersonDTO;

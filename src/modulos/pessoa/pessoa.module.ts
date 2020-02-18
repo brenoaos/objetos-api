@@ -9,7 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         TypeOrmModule.forFeature([PessoaRepository]),
     ],
     controllers: [PessoaController],
-    providers: [PessoaService]
+    providers: [PessoaService],
 })
 
 export class PessoaModule {
