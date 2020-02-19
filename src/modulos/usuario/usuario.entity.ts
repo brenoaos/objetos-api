@@ -2,6 +2,8 @@ import { BaseEntity, Entity, Column, OneToOne, PrimaryGeneratedColumn, JoinColum
 import { Pessoa } from '../pessoa/pessoa.entity';
 import { ApiProperty, ApiHideProperty } from '@nestjs/swagger';
 
+import * as bcrypt from 'bcrypt';
+
 @Entity({
     name: 'usuario',
 })
@@ -65,6 +67,10 @@ export class UsuarioEntity extends BaseEntity {
 
     @ApiProperty()
     @Column()
+    salt: string;
+
+    @ApiProperty()
+    @Column()
     primeiroAcesso: boolean;
 
     @ApiProperty({
@@ -79,4 +85,10 @@ export class UsuarioEntity extends BaseEntity {
         default: new Date(),
     })
     dataAlteracao: Date;
+
+    async validatePassword(password: string): Promise<boolean> {
+        const hash = await bcrypt.hash(password, this.salt);
+
+        return hash === this.senha;
+    }
 }
