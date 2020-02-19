@@ -2,12 +2,11 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { Pessoa } from '../modulos/pessoa/pessoa.entity';
 import { CaixaEntity } from '../modulos/caixa/caixa.entity';
 import { ObjetoEntity } from '../modulos/objeto/objeto.entity';
+import { UsuarioEntity } from '../modulos/usuario/usuario.entity';
 
-const entities = [
-    Pessoa,
-    CaixaEntity,
-    ObjetoEntity,
-];
+const entities = [Pessoa, UsuarioEntity, ObjetoEntity, CaixaEntity];
+
+// const entities = ['../modulos/**/*.entity.ts'];
 
 interface IBaseConfig {
     [stage: string]: TypeOrmModuleOptions;
@@ -24,6 +23,14 @@ const baseConfig: IBaseConfig = {
         entities,
         ssl: true,
         synchronize: true,
+        migrationsRun: true,
+        logging: true,
+        logger: 'file',
+        migrationsTableName: 'migrations',
+        migrations: ['../migrations/*.ts'],
+        cli: {
+            migrationsDir: '../migrations',
+        },
     },
     developement: {
         type: 'postgres',
@@ -34,6 +41,14 @@ const baseConfig: IBaseConfig = {
         database: 'objetos',
         entities,
         synchronize: true,
+        migrationsRun: true,
+        logging: true,
+        logger: 'file',
+        migrationsTableName: 'migrations',
+        migrations: ['../migrations/*.ts'],
+        cli: {
+            migrationsDir: '../migrations',
+        },
     },
 };
 

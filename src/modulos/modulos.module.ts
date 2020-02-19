@@ -7,7 +7,7 @@ import { ObjetoModule } from './objeto/objeto.module';
     imports: [
         PessoaModule,
         CaixaModule,
-        ObjetoModule
+        ObjetoModule,
     ],
 })
 export class ModulosModule { }

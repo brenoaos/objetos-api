@@ -1,14 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { Migration } from 'typeorm';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { typeOrmConfig } from './config/typeorm.config';
 
 async function bootstrap() {
+
   const app = await NestFactory.create(AppModule, {
-    //logger: false,
+    // logger: false,
   });
 
   app.enableCors();
-  app.useGlobalGuards()
+  app.useGlobalGuards();
   const options = new DocumentBuilder()
 
     .setTitle('Object Control')

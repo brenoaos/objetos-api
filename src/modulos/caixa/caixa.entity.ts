@@ -1,55 +1,55 @@
-import {Entity, BaseEntity, PrimaryGeneratedColumn, Column} from 'typeorm';
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
 import { CorEnum } from '../../core/enum/cor.enum';
 import { CaixaTipoEnum } from './caixa.enum';
 // import { ApiImplicitBody,  } from '@nestjs/swagger';
 
 @Entity({
-    name: 'caixa'
+    name: 'caixa',
 })
-export class CaixaEntity extends BaseEntity{
+export class CaixaEntity extends BaseEntity {
 
     @PrimaryGeneratedColumn({
-        comment: 'Codigo Principal para caixa'
+        comment: 'Codigo Principal para caixa',
     })
     codigo: number;
-    
+
     @Column({
-        comment: 'Tipo de caixa'
+        comment: 'Tipo de caixa',
     })
     tipo: CaixaTipoEnum;
-    
+
     @Column({
-        comment: 'Cor da caixa'
+        comment: 'Cor da caixa',
     })
     cor: CorEnum;
-    
+
     @Column({
-        comment: 'Altura de caixa'
+        comment: 'Altura de caixa',
     })
     altura: number;
-    
+
     @Column({
-        comment: 'Largura de caixa'
+        comment: 'Largura de caixa',
     })
     largura: number;
 
     @Column({
-        comment: 'Comprimento de caixa'
+        comment: 'Comprimento de caixa',
     })
     comprimento: number;
 
     @Column({
-        comment: 'Codigo de caixa mae'
+        comment: 'Codigo de caixa mae',
     })
     caixaCodigo: number;
 
     @Column({
-        comment: 'Local de armazenamento de caixa'
+        comment: 'Local de armazenamento de caixa',
     })
     local: string;
 
     @Column({
-        comment: 'Observação'
+        comment: 'Observação',
     })
     observacao: string;
 }

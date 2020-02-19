@@ -1,7 +1,6 @@
-import { Get, Query, ParseIntPipe, Param, Post, Body } from "@nestjs/common";
-import { FilterQuery } from "typeorm";
-import { IObjetoQuery } from "./crud.interface";
-
+import { Get, Query, ParseIntPipe, Param, Post, Body, Delete, Patch, Req } from '@nestjs/common';
+import { FilterQuery } from 'typeorm';
+import { IObjetoQuery, IBaseRepository } from './crud.interface';
 
 export class CrudController<T> {
     service;
@@ -10,26 +9,38 @@ export class CrudController<T> {
         this.service = service;
     }
 
-
     @Get()
-    getall(@Query('filtro') filtro: IObjetoQuery): Promise<T[]> {
-        // let filter = req;
-        return this.service.procurar(filtro);
+    async getall(@Query('filtro') filtro: any): Promise<T[]> {
+        return await this.service.procurar(filtro);
     }
 
     @Get(':codigo')
-    getOne(@Param('codigo', ParseIntPipe) codigo: number): Promise<T> {
-        return this.service.procurarPorCodigo(codigo);
+    async getOne(@Param('codigo', ParseIntPipe) codigo: number): Promise<T> {
+        return await this.service.procurarPorCodigo(codigo);
     }
 
     @Get('count')
-    count(@Query('filtro') filtro: FilterQuery<T>): Promise<T> {
-        return this.service.count(filtro);
+    async count(@Query('filtro') filtro: IObjetoQuery<T>): Promise<T> {
+        return await this.service.count(filtro);
     }
 
-    @Post('create')
-    create(@Body() objeto: object) {
-        return this.service.inserir(objeto)
+    @Post()
+    async create(@Body() objeto: Promise<T>) {
+        return await this.service.inserir(objeto);
     }
 
+    @Delete()
+    async deletar(@Query('filtro') filtro: IObjetoQuery<T>): Promise<any> {
+        return await this.service.deletar(filtro);
+    }
+
+    @Delete(':codigo')
+    async deletarPorCodigo(@Param('codigo', ParseIntPipe) codigo: number): Promise<any> {
+        return await this.service.deletar(codigo);
+    }
+
+    @Patch()
+    async atualizar(@Body() objeto: Promise<T>): Promise<T> {
+        return await this.service.atualizar(objeto);
+    }
 }
