@@ -8,10 +8,17 @@ export class AuthController {
 
     constructor(private service: AuthService) { }
 
-    @Post('/singup')
-    async singup(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<UsuarioEntity> {
+    @Post('/signup')
+    signup(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<void> {
 
-        return await this.service.singUp(authCredentialsDto);
+        return this.service.signUp(authCredentialsDto);
+
+    }
+
+    @Post('/signin')
+    signin(@Body(ValidationPipe) authCredentialsDto: AuthCredentialsDto): Promise<{accessToken: string}> {
+
+        return this.service.signIn(authCredentialsDto);
 
     }
 
