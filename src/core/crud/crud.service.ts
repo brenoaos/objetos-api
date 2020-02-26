@@ -1,9 +1,6 @@
-import { InjectRepository } from '@nestjs/typeorm';
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
-import { FilterQuery, Repository } from 'typeorm';
-import { Query } from 'typeorm/driver/Query';
-import { IObjetoQuery } from './crud.interface';
-import { isObject } from 'util';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { FilterQuery, Repository, Like } from 'typeorm';
+import { parserFilterLike } from '../utils';
 
 @Injectable()
 export class CrudService<T> {
@@ -25,18 +22,19 @@ export class CrudService<T> {
             filter = {};
         }
 
-        // if (!filter.take) filter.take = 50;
+        if (filter.like) {
+            filter['where']=[]
+            filter = parserFilterLike(filter);
+        }
 
         const registros = await this.repository.find(filter);
-
-        // if (registros.length <= 0) throw new NotFoundException(`Nenhum registro foi encontrado.`)
 
         return {
             quantidadeTotal: await this.count({}).then((n) => n),
             quantidade: registros.length,
             registros,
         };
-    }
+     }
 
     async procurarPorCodigo(codigo: number | string): Promise<T> {
 
