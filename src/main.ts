@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { Migration } from 'typeorm';
+import { Migration, Repository } from 'typeorm';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmConfig } from './config/typeorm.config';
 
@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     // logger: false,
   });
-
+  
   app.enableCors();
   app.useGlobalGuards();
   const options = new DocumentBuilder()
