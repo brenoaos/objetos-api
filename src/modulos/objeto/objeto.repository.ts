@@ -14,7 +14,7 @@ export class ObjetoRepository extends Repository<ObjetoEntity> {
         obj.cor = objeto.cor;
         obj.chaveAcessoNotaFiscal= objeto.chaveAcessoNotaFiscal;
         obj.nome = objeto.nome
-        obj.donoCodigo = Number(objeto.dono.split('|')[0]);
+        obj.donoCodigo = Number(objeto.donoCodigo.split('|')[0]);
         obj.descricao = objeto.descricao,
         obj.zeladorCodigo = null,
         await obj.save();
