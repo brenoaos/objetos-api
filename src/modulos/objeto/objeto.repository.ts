@@ -7,7 +7,6 @@ export class ObjetoRepository extends Repository<ObjetoEntity> {
     
     async createObjeto(objeto): Promise<ObjetoEntity> {
         const obj = new ObjetoEntity()
-
         obj.altura = Number(objeto.altura);
         obj.largura = Number(objeto.largura);
         obj.comprimento = Number(objeto.comprimento);
