@@ -59,7 +59,7 @@ export class ObjetoEntity extends BaseEntity {
         comment: '',
         nullable: true,
     })
-    tensão: number;
+    tensao: number;
 
     @Column({
         comment: '',
