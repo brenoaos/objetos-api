@@ -7,8 +7,13 @@ import { ObjetoRepository } from './objeto.repository';
 @Injectable()
 export class ObjetoService extends CrudService<ObjetoEntity> {
     constructor(
-        @InjectRepository(ObjetoRepository) objetoRepository: ObjetoRepository
+        @InjectRepository(ObjetoRepository)
+        public objetoRepository: ObjetoRepository
     ) {
         super(objetoRepository)
+    }
+
+    async inserir(objeto: ObjetoEntity): Promise<ObjetoEntity> {
+        return await this.objetoRepository.createObjeto(objeto);
     }
 }
