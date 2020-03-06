@@ -1,6 +1,8 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { CorEnum } from '../../core/enum/cor.enum';
-import { CaixaTipoEnum } from './caixa.enum';
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany, OneToOne, JoinColumn } from 'typeorm';
+import { join } from 'path';
+import { TipoCaixaEntity } from './tipo/tipoCaixa.entity';
+import { CorCaixaEntity } from './cor/corCaixa.entity';
+import { LocalCaixaEntity } from './local/localCaixa.entity';
 // import { ApiImplicitBody,  } from '@nestjs/swagger';
 
 @Entity({
@@ -16,12 +18,16 @@ export class CaixaEntity extends BaseEntity {
     @Column({
         comment: 'Tipo de caixa',
     })
-    tipo: CaixaTipoEnum;
+    @OneToOne(type => TipoCaixaEntity)
+    @JoinColumn()
+    tipo: number;
 
     @Column({
         comment: 'Cor da caixa',
     })
-    cor: CorEnum;
+    @OneToOne(type => CorCaixaEntity)
+    @JoinColumn()
+    cor: number;
 
     @Column({
         comment: 'Altura de caixa',
@@ -46,7 +52,9 @@ export class CaixaEntity extends BaseEntity {
     @Column({
         comment: 'Local de armazenamento de caixa',
     })
-    local: string;
+    @OneToOne(type => LocalCaixaEntity)
+    @JoinColumn()
+    local: number;
 
     @Column({
         comment: 'Observação',

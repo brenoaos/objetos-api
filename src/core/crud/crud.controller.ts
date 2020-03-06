@@ -10,7 +10,7 @@ export class CrudController<T> {
     }
 
     @Get()
-    async getall(@Query('filtro') filtro: any): Promise<T[]> {
+    async getall(@Query('filtro') filtro: string): Promise<T[]> {
         return await this.service.procurar(filtro);
     }
 

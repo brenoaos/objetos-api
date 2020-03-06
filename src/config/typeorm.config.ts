@@ -3,8 +3,11 @@ import { Pessoa } from '../modulos/pessoa/pessoa.entity';
 import { CaixaEntity } from '../modulos/caixa/caixa.entity';
 import { ObjetoEntity } from '../modulos/objeto/objeto.entity';
 import { UsuarioEntity } from '../modulos/usuario/usuario.entity';
+import { TipoCaixaEntity } from 'src/modulos/caixa/tipo/tipoCaixa.entity';
+import { LocalCaixaEntity } from 'src/modulos/caixa/local/localCaixa.entity';
+import { CorCaixaEntity } from 'src/modulos/caixa/cor/corCaixa.entity';
 
-const entities = [Pessoa, UsuarioEntity, ObjetoEntity, CaixaEntity];
+const entities = [Pessoa, UsuarioEntity, ObjetoEntity, CaixaEntity, TipoCaixaEntity, CorCaixaEntity, LocalCaixaEntity];
 
 // const entities = ['../modulos/**/*.entity.ts'];
 

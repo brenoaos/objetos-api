@@ -2,9 +2,9 @@ import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm';
 // import { ApiImplicitBody,  } from '@nestjs/swagger';
 
 @Entity({
-    name: 'caixa_tipo',
+    name: 'caixa_cor',
 })
-export class TipoCaixaEntity extends BaseEntity {
+export class CorCaixaEntity extends BaseEntity {
 
     @PrimaryGeneratedColumn({
         comment: 'Codigo Principal para caixa',
@@ -12,7 +12,7 @@ export class TipoCaixaEntity extends BaseEntity {
     codigo: number;
 
     @Column({
-        comment: 'Tipo de caixa',
+        comment: 'Cor da caixa',
     })
     descricao: string;
 }

@@ -74,4 +74,7 @@ export class CrudService<T> {
 
     }
 
+    async inserir(objeto: T): Promise<T> {
+        return await this.repository.save<T>(objeto);
+    }
 }
