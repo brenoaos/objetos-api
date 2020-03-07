@@ -11,9 +11,9 @@ export class CaixaRepository extends Repository<CaixaEntity>{
         cx.altura = Number(altura);
         cx.largura = Number(largura);
         cx.comprimento = Number(comprimento);
-        cx.local = local;
-        cx.cor = cor;
-        cx.tipo = tipo;
+        cx.local = Number(local.split('|')[0]);
+        cx.cor = Number(cor.split('|')[0]);
+        cx.tipo = Number(tipo.split('|')[0]);
         cx.observacao = observacao;
         cx.caixaCodigo = 0;
         return await cx.save()

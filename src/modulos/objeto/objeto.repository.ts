@@ -1,12 +1,13 @@
-import { Repository, EntityRepository } from "typeorm";
+import { Repository, EntityRepository, getManager } from "typeorm";
 import { ObjetoEntity } from "./objeto.entity";
-
 
 @EntityRepository(ObjetoEntity)
 export class ObjetoRepository extends Repository<ObjetoEntity> {
-    
+
     async createObjeto(objeto): Promise<ObjetoEntity> {
+
         const obj = new ObjetoEntity()
+        
         obj.altura = Number(objeto.altura);
         obj.largura = Number(objeto.largura);
         obj.comprimento = Number(objeto.comprimento);
@@ -17,7 +18,10 @@ export class ObjetoRepository extends Repository<ObjetoEntity> {
         obj.donoCodigo = Number(objeto.donoCodigo.split('|')[0]);
         obj.descricao = objeto.descricao,
         obj.zeladorCodigo = null,
-        await obj.save();
+
+        await getManager().transaction( async () => obj.save() )
+        
+        
         return obj
     }
 }
