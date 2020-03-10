@@ -13,7 +13,4 @@ export class ObjetoService extends CrudService<ObjetoEntity> {
         super(objetoRepository)
     }
 
-    async inserir(objeto: ObjetoEntity): Promise<ObjetoEntity> {
-        return await this.objetoRepository.createObjeto(objeto);
-    }
 }

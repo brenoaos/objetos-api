@@ -59,6 +59,7 @@ export class Pessoa extends BaseEntity {
     @ApiProperty()
     @Column({
         comment: 'Data em que a pessoa foi cadastrada',
+        default: new Date(),
     })
     dataCadastro: Date;
 

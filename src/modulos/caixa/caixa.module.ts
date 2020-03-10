@@ -12,10 +12,14 @@ import { CorCaixaController } from './cor/corCaixa.controller';
 import { LocalCaixaController } from './local/localCaixa.controller';
 import { LocalCaixaService } from './local/localCaixa.service';
 import { CorCaixaService } from './cor/corCaixa.service';
+import { ObjetoService } from '../objeto/objeto.service';
+import { ObjetoModule } from '../objeto/objeto.module';
+import { ObjetoRepository } from '../objeto/objeto.repository';
 
 @Module({
     imports: [
-        TypeOrmModule.forFeature([CaixaRepository, TipoCaixaRepository, CorCaixaRepository, LocalCaixaRepository])
+        TypeOrmModule.forFeature([CaixaRepository, TipoCaixaRepository, CorCaixaRepository, LocalCaixaRepository, ObjetoRepository]),
+        ObjetoModule,
     ],
     controllers: [
         CaixaController,
@@ -28,6 +32,7 @@ import { CorCaixaService } from './cor/corCaixa.service';
         TipoCaixaService,
         LocalCaixaService,
         CorCaixaService,
+        ObjetoService,
     ],
     
 })

@@ -1,4 +1,6 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, EntitySchema } from "typeorm";;
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, EntitySchema, OneToOne, JoinColumn } from "typeorm";import { CaixaEntity } from "../caixa/caixa.entity";
+import { JoinAttribute } from "typeorm/query-builder/JoinAttribute";
+;
 
 @Entity({
     name: 'objeto'
@@ -71,6 +73,13 @@ export class ObjetoEntity extends BaseEntity {
         nullable: true
     })
     zeladorCodigo: number;
+
+    @Column({
+        name: 'codigo_caixa',
+        comment: 'Codigo da caixa',
+        nullable: true
+    })
+    caixaCodigo: number
 
     @Column({
         comment: '',
