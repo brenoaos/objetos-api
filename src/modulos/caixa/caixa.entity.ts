@@ -18,15 +18,11 @@ export class CaixaEntity extends BaseEntity {
     @Column({
         comment: 'Tipo de caixa',
     })
-    @OneToOne(type => TipoCaixaEntity)
-    @JoinColumn()
     tipo: number;
 
     @Column({
         comment: 'Cor da caixa',
     })
-    @OneToOne(type => CorCaixaEntity)
-    @JoinColumn()
     cor: number;
 
     @Column({
@@ -52,8 +48,6 @@ export class CaixaEntity extends BaseEntity {
     @Column({
         comment: 'Local de armazenamento de caixa',
     })
-    @OneToOne(type => LocalCaixaEntity)
-    @JoinColumn()
     local: number;
 
     @Column({

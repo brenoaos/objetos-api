@@ -1,7 +1,6 @@
 import { BaseEntity, Entity, Column, OneToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 import { Pessoa } from '../pessoa/pessoa.entity';
 import { ApiProperty, ApiHideProperty } from '@nestjs/swagger';
-
 import * as bcrypt from 'bcrypt';
 
 @Entity({
