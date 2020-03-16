@@ -84,6 +84,7 @@ export class ObjetoEntity extends BaseEntity {
     @Column({
         comment: '',
         nullable: true,
+        default: new Date(),
     })
     dataValidade: Date;
 
