@@ -13,6 +13,7 @@ export class CorCaixaEntity extends BaseEntity {
 
     @Column({
         comment: 'Cor da caixa',
+        unique: true,
     })
     descricao: string;
 }

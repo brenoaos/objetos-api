@@ -15,17 +15,4 @@ export class CaixaService extends CrudService<CaixaEntity> {
     ) {
         super(caixaRepository)
     }
-
-    async inserir(caixa: any): Promise<CaixaEntity> {
-        return this.caixaRepository.createPerson(caixa);
-    }
-
-    // async atualizar(caixa: CaixaEntity): Promise<CaixaEntity> {
-
-    //     const lcaixa = this.procurarPorCodigo(caixa.codigo)
-
-    //     return (await lcaixa).save({ data: caixa });
-
-    // }
-
 }
