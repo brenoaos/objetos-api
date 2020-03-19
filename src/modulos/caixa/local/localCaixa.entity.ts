@@ -13,6 +13,7 @@ export class LocalCaixaEntity extends BaseEntity {
 
     @Column({
         comment: 'Local de caixa',
+        unique: true,
     })
     descricao: string;
 }

@@ -13,6 +13,7 @@ export class TipoCaixaEntity extends BaseEntity {
 
     @Column({
         comment: 'Tipo de caixa',
+        unique: true,
     })
     descricao: string;
 }

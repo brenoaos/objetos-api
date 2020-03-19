@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException, ConflictException } from '@nestjs/common';
 import { FilterQuery, Repository, Like } from 'typeorm';
 import { parserFilterLike } from '../utils';
 
@@ -23,7 +23,7 @@ export class CrudService<T> {
         }
 
         if (filter.like) {
-            filter['where']=[]
+            filter['where'] = []
             filter = parserFilterLike(filter);
         }
 
@@ -34,7 +34,7 @@ export class CrudService<T> {
             quantidade: registros.length,
             registros,
         };
-     }
+    }
 
     async procurarPorCodigo(codigo: number | string): Promise<T> {
 
@@ -75,6 +75,23 @@ export class CrudService<T> {
     }
 
     async inserir(objeto: T): Promise<T> {
-        return await this.repository.save<T>(objeto);
+
+        try {
+
+            return await this.repository.save<T>(objeto);
+
+        } catch (e) {
+
+            if (e.code === '23505') {
+
+                throw new ConflictException('Já existe um registro igual a esse.')
+
+            }
+
+            console.log(JSON.stringify(e))
+            throw new Error('Erro ao inserir processar a requisição.')
+
+        }
+
     }
 }
